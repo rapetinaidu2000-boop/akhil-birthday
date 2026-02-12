@@ -3,71 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unlock Your Scene 🎬</title>
+<title>Premiere Night 🎬</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
+*{
+  box-sizing:border-box;
+}
+
 body{
-margin:0;
-background:black;
-color:white;
-font-family: Arial, sans-serif;
-text-align:center;
-overflow-x:hidden;
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #1a1a1a, #000000);
+  color:white;
+  overflow:hidden;
+  text-align:center;
 }
 
+/* Sparkle Background */
+body::before{
+  content:"";
+  position:fixed;
+  width:100%;
+  height:100%;
+  background-image:radial-gradient(#d4af37 1px, transparent 1px);
+  background-size:40px 40px;
+  opacity:0.05;
+  z-index:-1;
+}
+
+/* Common Screen */
 .screen{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:20px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
 }
 
+/* Headings */
 h1{
-color:#ffcc00;
+  font-family:'Cinzel', serif;
+  font-size:clamp(28px, 6vw, 44px);
+  color:#d4af37;
+  text-shadow:0 0 15px rgba(212,175,55,0.7);
+  margin-bottom:15px;
 }
 
+p{
+  max-width:95%;
+  font-size:clamp(15px, 4vw, 19px);
+  line-height:1.8;
+  color:#e6e6e6;
+}
+
+/* Buttons */
 button{
-margin:10px;
-padding:12px 25px;
-border:none;
-border-radius:25px;
-background:#ffcc00;
-cursor:pointer;
-font-size:16px;
-transition:0.3s;
+  margin:10px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#d4af37,#f7e7a9);
+  color:black;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 15px rgba(212,175,55,0.4);
 }
 
 button:hover{
-transform:scale(1.1);
+  transform:scale(1.08);
+  box-shadow:0 0 25px rgba(212,175,55,0.8);
 }
 
+/* Content Section */
 .content{
-display:none;
-padding:40px 20px;
-animation:fadeIn 2s ease-in-out;
+  display:none;
+  padding:30px 15px;
+  animation:fadeIn 2s ease-in-out;
 }
 
 @keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
+  from{opacity:0;}
+  to{opacity:1;}
 }
 
+/* Slideshow */
 .slideshow{
-max-width:500px;
-margin:30px auto;
-position:relative;
-height:350px;
+  width:100%;
+  max-width:450px;
+  height:300px;
+  margin:25px auto;
+  position:relative;
 }
 
 .slideshow img{
-width:100%;
-border-radius:15px;
-position:absolute;
-opacity:0;
-animation:slide 32s infinite;
-box-shadow:0 0 20px rgba(255,204,0,0.4);
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:20px;
+  position:absolute;
+  opacity:0;
+  box-shadow:0 0 25px rgba(212,175,55,0.5);
+  animation:slide 32s infinite;
+}
+
+@keyframes slide{
+  0%{opacity:0;}
+  5%{opacity:1;}
+  20%{opacity:1;}
+  25%{opacity:0;}
+  100%{opacity:0;}
+}
+
+.slideshow img:nth-child(1){animation-delay:0s;}
+.slideshow img:nth-child(2){animation-delay:4s;}
+.slideshow img:nth-child(3){animation-delay:8s;}
+.slideshow img:nth-child(4){animation-delay:12s;}
+.slideshow img:nth-child(5){animation-delay:16s;}
+.slideshow img:nth-child(6){animation-delay:20s;}
+.slideshow img:nth-child(7){animation-delay:24s;}
+.slideshow img:nth-child(8){animation-delay:28s;}
+
+/* Credits */
+.credits{
+  display:none;
+  position:fixed;
+  bottom:-100%;
+  width:100%;
+  height:100%;
+  background:black;
+  color:#d4af37;
+  font-family:'Cinzel', serif;
+  overflow:hidden;
+}
+
+.credit-text{
+  position:absolute;
+  bottom:-100%;
+  width:100%;
+  animation:roll 20s linear forwards;
+}
+
+@keyframes roll{
+  0%{bottom:-100%;}
+  100%{bottom:100%;}
+}
+
+.credit-text h2{
+  margin:20px 0;
+  font-size:clamp(20px,5vw,28px);
+  letter-spacing:2px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Intro Screen -->
+<div class="screen" id="startScreen">
+  <h1>🎬 The Grand Premiere</h1>
+  <p>Only true filmmakers can unlock this story.</p>
+  <p>Who is the Director of this life journey?</p>
+
+  <button onclick="checkAnswer('akhil')">Akhil</button>
+  <button onclick="checkAnswer('bro')">Bro</button>
+  <button onclick="checkAnswer('friend')">Friend</button>
+</div>
+
+<!-- Main Content -->
+<div class="content" id="mainContent">
+  <h1>🎉 Happy Birthday Bro Akhil 🎬</h1>
+
+  <div class="slideshow">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
+    <img src="photo6.jpg">
+    <img src="photo7.jpg">
+    <img src="photo8.jpg">
+  </div>
+
+  <p>
+  Bro… we met while learning filmmaking…  
+  But I unknowingly met my life’s Assistant Director.  
+
+  You didn’t just teach me frames and shots…  
+  You shaped my vision.  
+
+  Every blockbuster needs a strong backbone.  
+  In my life’s film — that role is you.  
+
+  May your life always run in 4K,  
+  No retakes,  
+  Only blockbusters. ❤️
+  </p>
+</div>
+
+<!-- Credits -->
+<div class="credits" id="credits">
+  <div class="credit-text">
+    <h2>🎬 Directed By</h2>
+    <h2>Akhil</h2>
+
+    <h2>Story</h2>
+    <h2>Two Passionate Filmmakers</h2>
+
+    <h2>Mentor</h2>
+    <h2>Bro Akhil</h2>
+
+    <h2>Future Blockbusters</h2>
+    <h2>Loading...</h2>
+
+    <h2>With Love</h2>
+    <h2>Your Brother ❤️</h2>
+  </div>
+</div>
+
+<audio id="bgm" src="bgm.mp3"></audio>
+
+<script>
+function checkAnswer(answer){
+  if(answer === 'akhil'){
+    document.getElementById("startScreen").style.display="none";
+    document.getElementById("mainContent").style.display="block";
+    document.getElementById("bgm").play();
+    setTimeout(showCredits, 32000);
+  }else{
+    alert("Wrong Director 😎 Try Again!");
+  }
+}
+
+function showCredits(){
+  document.getElementById("mainContent").style.display="none";
+  document.getElementById("credits").style.display="block";
+}
+</script>
+
+</body>
+</html>box-shadow:0 0 20px rgba(255,204,0,0.4);
 }
 
 @keyframes slide{
